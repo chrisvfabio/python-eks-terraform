@@ -5,3 +5,4 @@ resources:
   - service.yaml
   - hpa.yaml
   - ingress.yaml
+  - pod-disruption-budget.yaml

@@ -1,0 +1,9 @@
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: hello-world
+spec:
+  selector:
+    matchLabels:
+      app: hello-world
+  minAvailable: 1

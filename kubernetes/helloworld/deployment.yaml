@@ -20,13 +20,35 @@ spec:
         app: hello-world
     spec:
       containers:
-      - name: hello-world
-        image: chrisvfabio/upwork-32487863-k8s-helloworld:5
-        ports:
-        - containerPort: 80
-        env:
-        resources:
-          requests:
-            cpu: 100m
-          limits:
-            cpu: 200m
+        - name: hello-world
+          image: chrisvfabio/upwork-32487863-k8s-helloworld:5
+          ports:
+            - containerPort: 80
+          env:
+          resources:
+            requests:
+              cpu: 100m
+            limits:
+              cpu: 200m
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 10
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: app
+                    operator: In
+                    values:
+                      - hello-world
+              topologyKey: 'kubernetes.io/hostname'
