@@ -33,7 +33,10 @@ resource "aws_eks_node_group" "this" {
   node_group_name = "${var.cluster_name}-nodeGroup"
   node_role_arn   = aws_iam_role.eksWorkerNodeRole.arn
   subnet_ids      = module.vpc.public_subnets
-  instance_types  = var.instance_types
+
+  capacity_type = "SPOT"
+
+  instance_types = var.instance_types
   scaling_config {
     desired_size = var.desired_size
     max_size     = var.max_size

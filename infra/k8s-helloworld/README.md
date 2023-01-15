@@ -48,7 +48,15 @@ terraform init
 
 This will create `.terraform/` directory which will include the downloaed providers (ie. aws).
 
-Next we'll want to apply the terraform which will attempt to create the infrastructure in the cloud provider. 
+Next we'll want to see the expected infrastructure changes terraform will make. We can do this by generating a "plan" which will display all the resources that will be created, updated or destroyed. 
+
+```bash
+terraform plan
+```
+
+> Think of a terraform plan like building code. It helps you validate your changes and iterate quicker.
+
+Once the plan looks good, we can do ahead an apply the infrastructure. Run the following command:  
 
 ```bash
 terraform apply

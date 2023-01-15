@@ -15,7 +15,7 @@ variable "cluster_name" {
 variable "desired_size" {
   description = "Desired size of the worker node, the default value is 2"
   type        = number
-  default     = 2
+  default     = 1
 }
 
 variable "max_size" {
